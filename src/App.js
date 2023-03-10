@@ -19,11 +19,8 @@ class App extends Component {
         img: 'https://ak.picdn.net/shutterstock/videos/1018031305/thumb/8.jpg' ,
         name: 'shutterstock',
         url: 'https://www.shutterstock.com/shutterstock/videos/1059957179/preview/stock-footage-a-female-weightlifter-performs-a-barbell-lift-in-a-dark-gym-a-woman-lifting-a-heavy-bar-over-her.webm'
-
       }
-
     }
-
   }
 
   render(){
