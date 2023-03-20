@@ -1,21 +1,22 @@
 import React from "react";
 
-function VideoList(){
+function VideoList(props){
+
+    const videos  = props.videos || [];
 
     return(
         <ul className="video-list">
-            <li className="video">
-                <img src="https://ak.picdn.net/shutterstock/videos/1018031305/thumb/8.jpg" alt="Nada"></img>
-                <div>tock-footageav</div>
+
+        {
+            videos.map( video => (
+
+                <li key={video.id} className="video">
+                <img src={video.img} alt={video.name}></img>
+                <div>{video.name}</div>
             </li>
-            <li className="video">
-                <img src="https://ak.picdn.net/shutterstock/videos/1018031305/thumb/8.jpg" alt="Nada"></img>
-                <div>tock-footageav</div>
-            </li>
-            <li className="video"> 
-                <img src="https://ak.picdn.net/shutterstock/videos/1018031305/thumb/8.jpg" alt="Nada"></img>
-                <div>tock-footageav</div>
-            </li>
+
+            ))
+        }
         </ul>
     )
 }

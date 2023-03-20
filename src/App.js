@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import './App.css';
 
+import { VideoService } from './services/VideoService';
+
 import VideoList from './components/VideoList';
 import VideoPlayer from './components/VideoPlayer';
 import VideoCinema from './components/VideoCinema';
@@ -11,16 +13,30 @@ class App extends Component {
   constructor(props){
 
     super(props);
+    this.selectVideo = this.selectVideo.bind(this);
 
     this.state = {
 
       videos: [],
-      selectedVideo: {
-        img: 'https://ak.picdn.net/shutterstock/videos/1018031305/thumb/8.jpg' ,
-        name: 'shutterstock',
-        url: 'https://www.shutterstock.com/shutterstock/videos/1059957179/preview/stock-footage-a-female-weightlifter-performs-a-barbell-lift-in-a-dark-gym-a-woman-lifting-a-heavy-bar-over-her.webm'
-      }
+      selectedVideo: {}
     }
+  }
+
+  async componentDidMount(){
+      const videos = await VideoService.list();
+
+      console.log(videos)
+
+      this.setState({videos});
+
+      this.selectVideo(videos[0]);
+  }
+
+  selectVideo(video){
+
+    this.setState({
+      selectedVideo: video
+    });
   }
 
   render(){
@@ -30,7 +46,7 @@ class App extends Component {
   return (
     <div className="App">
       <VideoPlayer video={state.selectedVideo} />
-      <VideoList videos={state.video} />  
+      <VideoList videos={state.videos} />  
       <VideoCinema isActive={false} />
     </div>
   );
